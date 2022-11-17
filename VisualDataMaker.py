@@ -13,7 +13,7 @@ def combine(background_images_path, foreground_images_path, verbose=False):
             foreground_images_path (Str)
                 - A path to a folder of images that will be placed onto the background images
     @Returns: An array of arrays such that [[combined image data, path to foreground file, coordinates of placed foreground object, size of foreground object]]
-              OHE labels for foreground images
+              A dictionary of OHE labels for foreground images - keys: file_path, values: ohe_label
     """
     synthetic_data = []
     DOB_OHE = {}
