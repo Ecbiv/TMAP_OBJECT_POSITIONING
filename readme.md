@@ -5,7 +5,7 @@ Given two contiguous pictures of any given building interior, TMAP_OBJECT_POSITI
 
 ### Motivation
 
-During the first week of our Machine Learning course, Tom & I were required to choose a final project. Many of the final projects could be solved with multivariate linear or logistic regression models or with a neural network containing minimal hidden layers. Tom & I felt that this was our opportunity to take a deep dive into ML and Deep Learning and move beyond the scope of our class. So rather than choose from the professor's pre-determined list of projects, we chose to solve a problem that encompassed a great number of interesting topics. We wanted to learn more than we figured we might given the pace of the course, and we wanted to the fulfillment of having solved a difficult problem. 
+During the first week of our Machine Learning course, Tom & I were required to propose a final project. The professor offered a list of potential projects. Many of the final projects could be solved with multivariate linear or logistic regression models or with a neural network containing a few hidden layers. None of these projects excited us. Rather than choose from the professor's pre-determined list of projects, we chose to make up a project. We knew we wanted to work with CNNs. We agreed that we wanted to create 3D environments from 2D images. 
 
 ### Build Status
     - [x] Build Dimensional Orientation Block (DOB)
