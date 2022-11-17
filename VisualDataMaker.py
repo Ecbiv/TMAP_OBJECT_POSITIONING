@@ -42,6 +42,12 @@ def combine(background_images_path, foreground_images_path, verbose=False):
 
 
 def plot_bounding_box(image_set, pred_coords = False):
+    """
+    @Desc: Takes image_set produced by combine() and draws a box around the foreground object,
+    @PARAM: image_set
+                - the object returned by combine()
+    @Returns: An array of arrays such that [[combined image data with drawn box around fg image, path to foreground file, coordinates of placed foreground object, size of foreground object]]
+    """
     bounded_image_set = []
     for image in image_set:
         img_array, classification, coordinates, size = image[0], image[1], image[2], image[3]
