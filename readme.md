@@ -12,6 +12,12 @@ During the first week of our Machine Learning course, Tom & I were required to p
     - [x] Upload training images of DOB
     - [x] Create synthetic DOB data for CNN training
     - [in process] CNN for DOB ID, positioning, and classification
+             - [x] CNN Block
+             - [x] Regression Block
+             - [x] Classification Block
+             - [ ] One Hot Encoding for Classification Output
+             - [ ] One Hot Encoding for Foreground Object detection
+             - [ ] Sequential Model Build
     - [ ] YOLO - Real-time object detection
     - [x] TMAP object orientation
 
