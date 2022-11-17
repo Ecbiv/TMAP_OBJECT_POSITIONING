@@ -1,24 +1,20 @@
 import tensorflow as tf
 from tensorflow import keras
+from keras import Sequential
 from keras.layers import Dense, Input, Flatten, Conv2D, MaxPool2D, BatchNormalization
 
-def conv_block(input):
-    output = Conv2D(32, 3, padding = 'same', activation = 'relu')(input)
-    output = BatchNormalization()(output)
-    output = MaxPool2D(2)(output)
-            
-    output = Conv2D(64, 3, padding = 'same', activation = 'relu')(output)
-    output = BatchNormalization()(output)
-    output = MaxPool2D(2)(output)
-            
-    output = Conv2D(128, 6, padding = 'valid', activation = 'relu')(output)
-    output = BatchNormalization()(output)
-    output = MaxPool2D(2)(output)
-                
-    output = Conv2D(128, 6, padding = 'valid', activation = 'relu')(output)
-    output = BatchNormalization()(output)
-    output = MaxPool2D(2)(output)
-    return output
+model = Sequential([
+    Input(shape=(32, 32, 3,)),
+    Conv2D(filters = 6, kernel_size = (3,3), padding = 'same', activation = 'relu'),
+    MaxPool2D(pool_size=(2,2)),
+    Conv2D(filters = 16, kernel_size = (3,3), padding = 'same', activation = 'relu'),
+    MaxPool2D(pool_size=(2,2)),
+    Conv2D(filters = 120, kernel_size = (3,3), padding = 'same', activation = 'relu'),
+    Flatten()
+])
+
+
+
 
 def regression_block(input):
     output = Flatten()(input)

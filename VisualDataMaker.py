@@ -13,12 +13,24 @@ def combine(background_images_path, foreground_images_path, verbose=False):
             foreground_images_path (Str)
                 - A path to a folder of images that will be placed onto the background images
     @Returns: An array of arrays such that [[combined image data, path to foreground file, coordinates of placed foreground object, size of foreground object]]
+              OHE labels for foreground images
     """
     synthetic_data = []
+    DOB_OHE = {}
     #---------[BEGIN IMAGE PREPROCESSING]
     DOB_images = np.array([np.array([cv2.imread(file), str(file)], dtype=object) for file in glob.glob(foreground_images_path)], dtype=object)
     BG_images = np.array([cv2.imread(file) for file in glob.glob(background_images_path)])
     #---------[END IMAGE PREPROCESSING]
+
+    #---------[BEGIN OHE LABELLING OF FOREGROUND IMAGES]
+    OHE = 0
+    for file in glob.glob(foreground_images_path):
+        OHE_LABEL = [0]*len(DOB_images)
+        OHE_LABEL[OHE] = 1
+        DOB_OHE[file] = OHE_LABEL
+        OHE += 1
+    #---------[END OHE LABELLING OF FOREGROUND IMAGES]   
+    
     for j in range(len(DOB_images)):
         for i in range(len(BG_images)):
             bg_img = BG_images[i]
@@ -39,7 +51,7 @@ def combine(background_images_path, foreground_images_path, verbose=False):
             if verbose:
                 cv2.imshow("Current Combined Image", synthetic_data[-1][0])
                 cv2.waitKey()
-    return np.array(synthetic_data, dtype=object)
+    return np.array(synthetic_data, dtype=object), DOB_OHE
 
 
 def plot_bounding_box(image_set, pred_coords = None):
