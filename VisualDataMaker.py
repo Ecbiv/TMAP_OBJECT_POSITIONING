@@ -3,13 +3,12 @@ import numpy as np
 import cv2
 from PIL import Image
 
-def get():
+def combine(background_images_path, foreground_images_path):
     synthetic_data = []
     #---------[BEGIN IMAGE PREPROCESSING]
-    DOB_images = [cv2.imread(file, cv2.IMREAD_GRAYSCALE) for file in glob.glob("./original_DOB_images/*.png")]
-    BG_images = [cv2.imread(file, cv2.IMREAD_GRAYSCALE) for file in glob.glob("./random_BG_IMG/n_data/*.jpg")]
+    DOB_images = [cv2.imread(file, cv2.IMREAD_GRAYSCALE) for file in glob.glob(foreground_images_path)]
+    BG_images = [cv2.imread(file, cv2.IMREAD_GRAYSCALE) for file in glob.glob(background_images_path)]
     #---------[END IMAGE PREPROCESSING]
-
     for j in range(len(DOB_images)):
         for i in range(len(BG_images)):
             bg_img = BG_images[i]
