@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 from PIL import Image, ImageDraw
 
+
 def combine(background_images_path, foreground_images_path, verbose=False):
     """
     @Desc: Foreground objects are randomly placed into Background objects.
@@ -14,7 +15,7 @@ def combine(background_images_path, foreground_images_path, verbose=False):
     """
     synthetic_data = []
     #---------[BEGIN IMAGE PREPROCESSING]
-    DOB_images = np.array([np.array([cv2.imread(file), str(file)]) for file in glob.glob(foreground_images_path)])
+    DOB_images = np.array([np.array([cv2.imread(file), str(file)]) for file in glob.glob(foreground_images_path)], dtype=object)
     BG_images = np.array([cv2.imread(file) for file in glob.glob(background_images_path)])
     #---------[END IMAGE PREPROCESSING]
     for j in range(len(DOB_images)):
@@ -49,5 +50,5 @@ def plot_bounding_box(image_set, pred_coords = False):
         draw.rectangle((coordinates[0], coordinates[1], coordinates[0] + size, coordinates[1] + size), outline = 'green', width = 2)
         #if pred_coords:
             #draw.rectangle((pred_coords[0], pred_coords[1], pred_coords[0] + 60, pred_coords[1] + 100), outline = 'red', width = 2)
-        bounded_image_set.append(np.array([np.array(img_literal), classification, coordinates, size]))
+        bounded_image_set.append(np.array([np.array(img_literal, dtype=object), classification, coordinates, size]), dtype=object)
     return np.array(bounded_image_set, dtype=object)
