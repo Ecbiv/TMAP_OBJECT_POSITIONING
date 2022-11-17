@@ -54,7 +54,8 @@ def plot_bounding_box(image_set, pred_coords = None):
         img_literal = Image.fromarray(img_array)
         draw = ImageDraw.Draw(img_literal)
         draw.rectangle((coordinates[0], coordinates[1], coordinates[0] + size, coordinates[1] + size), outline = 'blue', width = 2)
+        true_rectangle = (coordinates[0], coordinates[1], coordinates[0] + size, coordinates[1] + size)
         if pred_coords:
             draw.rectangle((pred_coords[0], pred_coords[1], pred_coords[0] + size, pred_coords[1] + size), outline = 'red', width = 2)
-        bounded_image_set.append([np.array(img_literal), classification, coordinates, size])
+        bounded_image_set.append([np.array(img_literal), classification, coordinates, size, true_rectangle])
     return np.array(bounded_image_set, dtype=object)
