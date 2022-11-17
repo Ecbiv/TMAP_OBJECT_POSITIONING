@@ -26,6 +26,7 @@ All requirements are completed in Python3. For any additional home-baked functio
 |Python3|
 |Numpy|
 |Pandas|
+|Pyplot|
 |OpenCV|
 |Pillow|
 |Glob|

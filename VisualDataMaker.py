@@ -15,7 +15,7 @@ def combine(background_images_path, foreground_images_path, verbose=False):
     """
     synthetic_data = []
     #---------[BEGIN IMAGE PREPROCESSING]
-    DOB_images = np.array([np.array([cv2.imread(file), str(file)]) for file in glob.glob(foreground_images_path)], dtype=object)
+    DOB_images = np.array([np.array([cv2.imread(file), str(file)], dtype=object) for file in glob.glob(foreground_images_path)], dtype=object)
     BG_images = np.array([cv2.imread(file) for file in glob.glob(background_images_path)])
     #---------[END IMAGE PREPROCESSING]
     for j in range(len(DOB_images)):
@@ -41,7 +41,7 @@ def combine(background_images_path, foreground_images_path, verbose=False):
     return np.array(synthetic_data, dtype=object)
 
 
-def plot_bounding_box(image_set, pred_coords = False):
+def plot_bounding_box(image_set, pred_coords = None):
     """
     @Desc: Takes image_set produced by combine() and draws a box around the foreground object,
     @PARAM: image_set
@@ -54,7 +54,7 @@ def plot_bounding_box(image_set, pred_coords = False):
         img_literal = Image.fromarray(img_array)
         draw = ImageDraw.Draw(img_literal)
         draw.rectangle((coordinates[0], coordinates[1], coordinates[0] + size, coordinates[1] + size), outline = 'green', width = 2)
-        #if pred_coords:
-            #draw.rectangle((pred_coords[0], pred_coords[1], pred_coords[0] + 60, pred_coords[1] + 100), outline = 'red', width = 2)
-        bounded_image_set.append(np.array([np.array(img_literal, dtype=object), classification, coordinates, size]), dtype=object)
+        if pred_coords:
+            draw.rectangle((pred_coords[0], pred_coords[1], pred_coords[0] + size, pred_coords[1] + size), outline = 'red', width = 2)
+        bounded_image_set.append([np.array(img_literal), classification, coordinates, size])
     return np.array(bounded_image_set, dtype=object)
