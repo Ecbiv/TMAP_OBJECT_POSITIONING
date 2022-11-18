@@ -1,32 +1,29 @@
 import tensorflow as tf
+import numpy as np
 from tensorflow import keras
 from keras import Sequential
 from keras.layers import Dense, Input, Flatten, Conv2D, MaxPool2D, BatchNormalization
 
-model = Sequential([
-    Input(shape=(32, 32, 3,)),
-    Conv2D(filters = 6, kernel_size = (3,3), padding = 'same', activation = 'relu'),
-    MaxPool2D(pool_size=(2,2)),
-    Conv2D(filters = 16, kernel_size = (3,3), padding = 'same', activation = 'relu'),
-    MaxPool2D(pool_size=(2,2)),
-    Conv2D(filters = 120, kernel_size = (3,3), padding = 'same', activation = 'relu'),
-    Flatten()
-])
 
+def convolutional_block(input):
+    output = Conv2D(filters = 16, kernel_size = (3,3), padding = 'same', activation = 'relu')(input)
+    output = BatchNormalization()(output)
+    output = MaxPool2D(pool_size=(2,2))(output)
+    output = Conv2D(filters = 32, kernel_size = (3,3), padding = 'same', activation = 'relu')(output)
+    output = BatchNormalization()(output)
+    output = MaxPool2D(pool_size=(2,2))(output)
+    return output
 
-
-
-def regression_block(input):
+def regression_block_forward(input):
     output = Flatten()(input)
     output = Dense(1024, activation = 'relu')(output)
     output = Dense(512, activation = 'relu')(output)
-    output = Dense(2, name = 'boundary box')(output)
+    output = Dense(2, name = 'boundary_box')(output)
     return output
 
-def classification_block(input):
+def classification_block_forward(input):
     output = Flatten()(input)
     output = Dense(1024, activation = 'relu')(output)
     output = Dense(512, activation = 'relu')(output)
     output = Dense(6, activation = 'softmax', name = 'class')(output)
     return output
-
