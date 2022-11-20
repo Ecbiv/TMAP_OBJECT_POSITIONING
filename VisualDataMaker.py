@@ -18,8 +18,8 @@ def combine(background_images_path, foreground_images_path, verbose=False):
     synthetic_data = []
     DOB_OHE = {}
     #---------[BEGIN IMAGE PREPROCESSING]
-    DOB_images = np.array([np.array([cv2.imread(file), str(file)], dtype=object) for file in glob.glob(foreground_images_path)], dtype=object)
-    BG_images = np.array([cv2.imread(file) for file in glob.glob(background_images_path)])
+    DOB_images = np.array([np.array([cv2.imread(file, cv2.IMREAD_UNCHANGED), str(file)], dtype=object) for file in glob.glob(foreground_images_path)], dtype=object)
+    BG_images = np.array([cv2.imread(file, cv2.IMREAD_UNCHANGED) for file in glob.glob(background_images_path)])
     #---------[END IMAGE PREPROCESSING]
 
     #---------[BEGIN OHE LABELLING OF FOREGROUND IMAGES]
