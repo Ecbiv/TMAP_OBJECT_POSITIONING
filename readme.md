@@ -15,9 +15,8 @@ During the first week of our Machine Learning course, Tom & I were required to p
              - [x] CNN Block
              - [x] Regression Block
              - [x] Classification Block
-             - [ ] One Hot Encoding for Classification Output
-             - [ ] One Hot Encoding for Foreground Object detection
-             - [ ] Sequential Model Build
+             - [x] One Hot Encoding for Foreground Object detection
+             - [x] Exportable Untrained Model
     - [ ] YOLO - Real-time object detection
     - [x] TMAP object orientation
 
