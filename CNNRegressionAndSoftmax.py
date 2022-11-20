@@ -19,10 +19,17 @@ def convolutional_block(input):
     output = Conv2D(filters = 32, kernel_size = (3,3), padding = 'same', activation = 'relu')(output)
     output = BatchNormalization()(output)
     output = MaxPool2D(pool_size=(2,2))(output)
+<<<<<<< HEAD
     output = Conv2D(filters = 64, kernel_size = (6,6), padding = 'same', activation = 'relu')(output)
     output = BatchNormalization()(output)
     output = MaxPool2D(pool_size=(2,2))(output)
     output = Conv2D(filters = 64, kernel_size = (6,6), padding = 'same', activation = 'relu')(output)
+=======
+    output = Conv2D(filters = 64, kernel_size = (3,3), padding = 'same', activation = 'relu')(output)
+    output = BatchNormalization()(output)
+    output = MaxPool2D(pool_size=(2,2))(output)
+    output = Conv2D(filters = 64, kernel_size = (3,3), padding = 'same', activation = 'relu')(output)
+>>>>>>> a3de77e4a63bf165cc0d6a04f4eff0899a2186dc
     output = BatchNormalization()(output)
     output = MaxPool2D(pool_size=(2,2))(output)
     return output
