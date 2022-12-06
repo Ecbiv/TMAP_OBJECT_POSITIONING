@@ -17,6 +17,10 @@ During the first week of our Machine Learning course, Tom & I were required to p
              - [x] Classification Block
              - [x] One Hot Encoding for Foreground Object detection
              - [x] Exportable Untrained Model
+             - [waiting on GPU] Trained Model
+             - [pseudocode] Scaling Factor for image pairs
+             - [psuedocode] Scaled and reformatted image with DOB classification
+             - [ ] Method with bridge object return {file_path_to_image_pair, DOB classifications}
     - [ ] YOLO - Real-time object detection
     - [x] TMAP object orientation
 
