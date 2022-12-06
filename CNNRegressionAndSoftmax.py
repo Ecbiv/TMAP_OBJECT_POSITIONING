@@ -31,7 +31,7 @@ def regression_block_forward(input):
     output = Flatten()(input)
     output = Dense(1024, activation = 'relu')(output)
     output = Dense(512, activation = 'relu')(output)
-    output = Dense(2, name = 'boundary_box')(output)
+    output = Dense(3, name = 'boundary_box')(output)
     return output
 
 def classification_block_forward(input):
