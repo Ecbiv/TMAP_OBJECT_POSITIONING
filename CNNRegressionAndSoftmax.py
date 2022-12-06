@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 from keras import Sequential
-from keras.layers import Dense, Input, Flatten, Conv2D, MaxPool2D, BatchNormalization
+from keras.layers import Dense, Input, Flatten, Conv2D, MaxPooling2D, BatchNormalization, GlobalMaxPooling2D
 
 def OHE_encoder(output):
     OHE = [0]*len(output)
@@ -15,16 +15,16 @@ def OHE_encoder(output):
 def convolutional_block(input):
     output = Conv2D(filters = 16, kernel_size = (3,3), padding = 'same', activation = 'relu')(input)
     output = BatchNormalization()(output)
-    output = MaxPool2D(pool_size=(2,2))(output)
+    output = MaxPooling2D(pool_size=(2,2))(output)
     output = Conv2D(filters = 32, kernel_size = (3,3), padding = 'same', activation = 'relu')(output)
     output = BatchNormalization()(output)
-    output = MaxPool2D(pool_size=(2,2))(output)
+    output = MaxPooling2D(pool_size=(2,2))(output)
     output = Conv2D(filters = 64, kernel_size = (6,6), padding = 'same', activation = 'relu')(output)
     output = BatchNormalization()(output)
-    output = MaxPool2D(pool_size=(2,2))(output)
+    output = MaxPooling2D(pool_size=(2,2))(output)
     output = Conv2D(filters = 64, kernel_size = (6,6), padding = 'same', activation = 'relu')(output)
     output = BatchNormalization()(output)
-    output = MaxPool2D(pool_size=(2,2))(output)
+    output = GlobalMaxPooling2D()(output)
     return output
 
 def regression_block_forward(input):
