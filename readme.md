@@ -17,7 +17,7 @@ During the first week of our Machine Learning course, Tom & I were required to p
              - [x] Classification Block
              - [x] One Hot Encoding for Foreground Object detection
              - [x] Exportable Untrained Model
-             - [waiting on GPU] Trained Model
+             - [x] Trained Model {CCE: .12, RMSE: 1.01}
              - [pseudocode] Scaling Factor for image pairs
              - [psuedocode] Scaled and reformatted image with DOB classification
              - [ ] Method with bridge object return {file_path_to_image_pair, DOB classifications}
