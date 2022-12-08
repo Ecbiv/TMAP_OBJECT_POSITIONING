@@ -31,7 +31,7 @@ def regression_block_forward(input):
     output = Flatten()(input)
     output = Dense(1024, activation = 'relu')(output)
     output = Dense(512, activation = 'relu')(output)
-    output = Dense(3, name = 'boundary_box')(output)
+    output = Dense(3, name = 'Coordinates_Surface_Area')(output)
     return output
 
 def classification_block_forward(input):
@@ -48,5 +48,5 @@ def getUntrainedModel(input_shape = (224, 224, 3)):
     box_output = regression_block_forward(x)
     class_output = classification_block_forward(x)
     model = keras.Model(inputs=input, outputs = [class_output, box_output])
-    model.compile(optimizer=tf.keras.optimizers.Adam(), loss={'class': 'categorical_crossentropy', 'boundary_box': 'mse'}, metrics={'class': 'accuracy', 'boundary_box': 'mse'})
+    model.compile(optimizer=tf.keras.optimizers.Adam(), loss={'class': 'categorical_crossentropy', 'Coordinates_Surface_Area': 'mean_squared_error'}, metrics={'class': 'accuracy', 'Coordinates_Surface_Area': tf.keras.metrics.RootMeanSquaredError()})
     return model
