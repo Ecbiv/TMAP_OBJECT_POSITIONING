@@ -5,7 +5,6 @@ import cv2
 import csv
 
 def main():
-    model = keras.models.load_model("./saved_models/CNN_DOB_SIZE/")
     img1 = np.array(cv2.imread("./CLASS_TRAINING_DATA/circle_left.jpg", cv2.IMREAD_UNCHANGED))
     img2 = np.array(cv2.imread("./CLASS_TRAINING_DATA/door_right.jpg", cv2.IMREAD_UNCHANGED))
     img1 = cv2.resize(img1, (224,224))
@@ -16,14 +15,7 @@ def main():
     batch.append(img1)
     batch.append(img2)
     batch = np.array(batch)
-    sizes = model.predict(batch)
-    scaling_factor = 0
-    if sizes[0][0] > sizes[1][0]:
-        scaling_factor = sizes[1][0]/sizes[0][0]
-        print("second bigger")
-    else:
-        scaling_factor = sizes[0][0]/sizes[1][0]
-        print("first bigger")
+    scaling_factor = 0.8738697
     img1 = np.array(cv2.imread("./CLASS_TRAINING_DATA/circle_left.jpg", cv2.IMREAD_UNCHANGED))
     img2 = np.array(cv2.imread("./CLASS_TRAINING_DATA/door_right.jpg", cv2.IMREAD_UNCHANGED))
 
